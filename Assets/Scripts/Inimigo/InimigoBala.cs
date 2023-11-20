@@ -32,5 +32,6 @@ public class InimigoBala : MonoBehaviour
             JogadorControle.instancia.ReceberDano(danoBala);
             Destroy(gameObject);
         }
+        if(collision.tag == "Parede") { Destroy(gameObject); }
     }
 }
