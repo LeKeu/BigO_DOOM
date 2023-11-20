@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class JogadorControle : MonoBehaviour
 {
@@ -77,8 +78,27 @@ public class JogadorControle : MonoBehaviour
                         Instantiate(balaImpacto, hit.point, transform.rotation);
                         if (hit.transform.tag == "Inimigo")
                         {
-                            Debug.Log("atingi " + hit.transform.name);
+                            //Debug.Log("atingi " + hit.transform.name);
                             hit.transform.parent.GetComponent<InimigoController>().TirarVida();
+                        }
+                        if (hit.transform.tag == "Omega")
+                        {
+                            if(hit.transform.parent.GetComponent<ButCertoResp>().resp == 'o') 
+                            { 
+                                Debug.Log("respCerta");
+                                hit.transform.GetChild(0).GetChild(0).GetComponent<Image>().color = Color.green;
+                            }
+                            else { Debug.Log("respErrada"); hit.transform.GetChild(0).GetChild(0).GetComponent<Image>().color = Color.red; }
+                        }
+                        if (hit.transform.tag == "BigO")
+                        {
+                            Debug.Log(hit.transform.name);
+                            if (hit.transform.parent.GetComponent<ButCertoResp>().resp == 'b') 
+                            { 
+                                Debug.Log("respCerta");
+                                hit.transform.GetChild(0).GetChild(0).GetComponent<Image>().color = Color.green;
+                            }
+                            else { Debug.Log("respErrada"); hit.transform.GetChild(0).GetChild(0).GetComponent<Image>().color = Color.red; }
                         }
                     }
                     else

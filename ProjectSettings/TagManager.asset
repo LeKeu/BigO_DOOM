@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Inimigo
+  - Expr
+  - Parede
+  - BigO
+  - Omega
   layers:
   - Default
   - TransparentFX
