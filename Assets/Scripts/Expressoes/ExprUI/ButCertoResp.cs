@@ -61,16 +61,16 @@ public class ButCertoResp : MonoBehaviour
         int indexOpc = Random.Range(0, 2);
         int indexTxt = Random.Range(0, 2);
 
-        exprTxt.GetComponentInChildren<Canvas>().GetComponentInChildren<TextMeshProUGUI>().text = "f(" + f + ") é _ de g(" + g + ")";
+        this.exprTxt.GetComponentInChildren<Canvas>().GetComponentInChildren<TextMeshProUGUI>().text = "f(" + f + ") é _ de g(" + g + ")";
 
-        butOpcs[indexOpc].GetComponentInChildren<Canvas>().GetComponentInChildren<TextMeshProUGUI>().text = OpcsTxt[indexTxt];
-        butOpcs[indexOpc].transform.tag = OpcsTxt[indexTxt];
+        this.butOpcs[indexOpc].GetComponentInChildren<Canvas>().GetComponentInChildren<TextMeshProUGUI>().text = this.OpcsTxt[indexTxt];
+        this.butOpcs[indexOpc].transform.tag = this.OpcsTxt[indexTxt];
 
         if (indexOpc == 1) { indexOpc = 0; } else { indexOpc = 1; }
         if (indexTxt == 1) { indexTxt = 0; } else { indexTxt = 1; }
 
-        butOpcs[indexOpc].GetComponentInChildren<Canvas>().GetComponentInChildren<TextMeshProUGUI>().text = OpcsTxt[indexTxt];
-        butOpcs[indexOpc].transform.tag = OpcsTxt[indexTxt];
+        this.butOpcs[indexOpc].GetComponentInChildren<Canvas>().GetComponentInChildren<TextMeshProUGUI>().text = this.OpcsTxt[indexTxt];
+        this.butOpcs[indexOpc].transform.tag = this.OpcsTxt[indexTxt];
     }
 
 

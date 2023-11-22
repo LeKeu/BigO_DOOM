@@ -47,6 +47,6 @@ public class InimigoController : MonoBehaviour
     {
         vida--;
         Debug.Log("vidasss" + vida);
-        if(vida <= 0) { Destroy(gameObject); }
+        if(vida <= 0) { Destroy(gameObject); OndaInimigo.qntdInmVivo--; }
     }
 }
