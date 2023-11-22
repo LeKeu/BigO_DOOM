@@ -160,7 +160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e6808a6e0e4cb3499ccf25b7fa5d82a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  danoBala: 5
+  danoBala: 1
   balaVel: 5
 --- !u!50 &3686372650378768618
 Rigidbody2D:

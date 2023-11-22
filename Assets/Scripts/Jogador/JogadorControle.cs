@@ -9,7 +9,7 @@ public class JogadorControle : MonoBehaviour
     public static JogadorControle instancia;
     Rigidbody2D rb;
     
-    [SerializeField] float vel = 5f;
+    [SerializeField] public float vel = 5f;
     [SerializeField] float mouseSensibilidade = 1f;
     public Camera viewCam; 
 
@@ -20,6 +20,7 @@ public class JogadorControle : MonoBehaviour
     [SerializeField] Animator armaAnim;
     public int qntdBalas;
     bool morreu;
+    public bool respondeu = false;
 
     //Vida player
     public int vidaAtual;
@@ -29,6 +30,8 @@ public class JogadorControle : MonoBehaviour
     [SerializeField] TextMeshProUGUI textVida, textBalas;
 
     Animator animator;
+
+    [SerializeField] BuffDebuff buffDebuff;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -84,21 +87,23 @@ public class JogadorControle : MonoBehaviour
                         if (hit.transform.tag == "Omega")
                         {
                             if(hit.transform.parent.GetComponent<ButCertoResp>().resp == 'o') 
-                            { 
-                                Debug.Log("respCerta");
+                            {
+                                respondeu = true;
+                                buffDebuff.Buff();
                                 hit.transform.GetChild(0).GetChild(0).GetComponent<Image>().color = Color.green;
                             }
-                            else { Debug.Log("respErrada"); hit.transform.GetChild(0).GetChild(0).GetComponent<Image>().color = Color.red; }
+                            else { respondeu = true; hit.transform.GetChild(0).GetChild(0).GetComponent<Image>().color = Color.red; buffDebuff.Debuff(); }
                         }
                         if (hit.transform.tag == "BigO")
                         {
                             Debug.Log(hit.transform.name);
                             if (hit.transform.parent.GetComponent<ButCertoResp>().resp == 'b') 
-                            { 
-                                Debug.Log("respCerta");
+                            {
+                                respondeu = true;
+                                buffDebuff.Buff();
                                 hit.transform.GetChild(0).GetChild(0).GetComponent<Image>().color = Color.green;
                             }
-                            else { Debug.Log("respErrada"); hit.transform.GetChild(0).GetChild(0).GetComponent<Image>().color = Color.red; }
+                            else { respondeu = true; hit.transform.GetChild(0).GetChild(0).GetComponent<Image>().color = Color.red; buffDebuff.Debuff(); }
                         }
                     }
                     else
