@@ -42,6 +42,7 @@ public class OndaInimigo : MonoBehaviour
 
     public void GerarInimigo()
     {
+        IA_DAC.comecouOnda = true;
         StartCoroutine("IEGerarInimigo");
     }
 

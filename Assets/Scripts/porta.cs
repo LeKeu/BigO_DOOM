@@ -10,7 +10,6 @@ public class porta : MonoBehaviour
     [SerializeField] float abrirVel;
 
     bool podeAbrir;
-    bool matouInimigos = true;
 
     public static bool abrirPorraPorta = false;
 

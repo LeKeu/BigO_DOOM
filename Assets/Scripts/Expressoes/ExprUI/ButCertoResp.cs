@@ -17,7 +17,7 @@ public class ButCertoResp : MonoBehaviour
     Complementares complementar;
     Funcoes funcoes;
 
-    [SerializeField] GameObject exprGO;
+    GameObject exprGO;
 
     bool b = false;
     bool o = false;
@@ -25,6 +25,8 @@ public class ButCertoResp : MonoBehaviour
 
     private void Awake()
     {
+        exprGO = GameObject.FindGameObjectWithTag("Expr");
+
         Expr = exprGO.GetComponent<TESTE>();
         calcular = exprGO.GetComponent<Calcular>();
         bigO = exprGO.GetComponent<BigO>();
@@ -35,6 +37,15 @@ public class ButCertoResp : MonoBehaviour
 
     private void Start()
     { // FALTA CHECAR EM RELAÇÃO A LOG
+        var exprs = Gerar();
+        string f = exprs[0].ToString();
+        string g = exprs[1].ToString();
+
+        LugarAleResp(f, g, resp);
+    }
+
+    public List<string> Gerar()
+    {
         string f = Expr.exprSUPREMA(1);
         string g = Expr.exprSUPREMA(1);
 
@@ -47,13 +58,19 @@ public class ButCertoResp : MonoBehaviour
         b = bigO.checarBigO(f, g);
         o = omega.checarOmega(f, g);
 
+        if((!b && o!) || (f.Contains("log") && g.Contains("log"))) { Gerar(); }
+        if (f.Contains("log") && !g.Contains("log")) { Debug.Log("f(" + f + ") é BigO de g(" + g + ")."); resp = 'b'; } 
+        else if (!f.Contains("log") && g.Contains("log")) { Debug.Log("f(" + f + ") é Omega de g(" + g + ")."); resp = 'o'; }
+        else
+        {
+            if (b) { Debug.Log("f(" + f + ") é BigO de g(" + g + ")."); resp = 'b'; }
+            if (o) { Debug.Log("f(" + f + ") é Omega de g(" + g + ")."); resp = 'o'; }
+        }
+
         Debug.Log(f + " <--> " + g);
-
-        if (b) { Debug.Log("f(" + f + ") é BigO de g(" + g + ")."); resp = 'b'; }
-        if (o) { Debug.Log("f(" + f + ") é Omega de g(" + g + ")."); resp = 'o'; }
         Debug.Log("===========================");
-
-        LugarAleResp(f, g, resp);
+        
+        return new List<string> { f, g };
     }
 
     public void LugarAleResp(string f, string g, char resp)
