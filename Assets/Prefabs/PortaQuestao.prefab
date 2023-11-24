@@ -133,7 +133,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   portaModelo: {fileID: 689290307803438157}
   colObject: {fileID: 5542362330203129688}
-  abrirVel: 50
+  abrirVel: 100
   portaNormal: 0
 --- !u!1001 &5542362329429571415
 PrefabInstance:

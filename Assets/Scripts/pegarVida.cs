@@ -4,23 +4,13 @@ using UnityEngine;
 
 public class pegarVida : MonoBehaviour
 {
-    [SerializeField] int qntdVida = 25;
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    [SerializeField] int qntdVida = 30;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
+            IA_DAC.qntdVidaAUX = true;
             JogadorControle.instancia.CurarVida(qntdVida);
             Destroy(gameObject);
         }

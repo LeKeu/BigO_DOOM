@@ -21,6 +21,7 @@ public class pegarMunicao : MonoBehaviour
     {
         if(collision.tag == "Player")
         {
+            IA_DAC.qntdBalasAUX = true;
             JogadorControle.instancia.qntdBalas += qntdBalas;
             JogadorControle.instancia.AtualizarBala();
             Destroy(gameObject);

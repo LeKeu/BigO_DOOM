@@ -35,36 +35,31 @@ public class TESTE : MonoBehaviour
 
     public List<string> CriarExpr()
     {
-        f = exprSUPREMA(1);
-        g = exprSUPREMA(1);
+        bool b = false, o = false;
+        while (!b || !o)
+        {
+            Debug.Log("hi");
+            f = exprSUPREMA(1);
+            g = exprSUPREMA(1);
 
-        f = complementar.FiltragemFinal(f);
-        g = complementar.FiltragemFinal(g);
+            f = complementar.FiltragemFinal(f);
+            g = complementar.FiltragemFinal(g);
 
-        //char t = calcular.Ateste(f, g);
-        //Debug.Log("char --> " + t);
+            //char t = calcular.Ateste(f, g);
+            //Debug.Log("char --> " + t);
 
-        //bool t = theta.checarTheta(f, g);
-        bool b = bigO.checarBigO(f, g);
-        bool o = omega.checarOmega(f, g);
+            //bool t = theta.checarTheta(f, g);
+            b = bigO.checarBigO(f, g);
+            o = omega.checarOmega(f, g);
 
-        //if (t) { Debug.Log("f(" + f + ") é Theta de g(" + g + ")."); }
-        if (b) { Debug.Log("f(" + f + ") é BigO de g(" + g + ")."); }
-        if (o) { Debug.Log("f(" + f + ") é Omega de g(" + g + ")."); }
-        Debug.Log("===========================");
-
+            //if (t) { Debug.Log("f(" + f + ") é Theta de g(" + g + ")."); }
+            if (b) { Debug.Log("f(" + f + ") é BigO de g(" + g + ")."); }
+            if (o) { Debug.Log("f(" + f + ") é Omega de g(" + g + ")."); }
+            Debug.Log("===========================");
+        }
+        
         return new List<string> { f, g };
 
-    }
-
-    void Start()
-    {
-        
-    }
-
-    public string RetornarF()
-    {
-        return f;
     }
 
     public string gerarExpr(int tamanho = 1)
@@ -114,7 +109,6 @@ public class TESTE : MonoBehaviour
         return expr.Length <= 20 ? expr : gerarExpr();
     }
 
-
     public string exprSUPREMA(int tamanho)
     {
         string expr = "";
@@ -123,6 +117,4 @@ public class TESTE : MonoBehaviour
         expr = complementar.filtrarExpr(expr);
         return expr;
     }
-
-
 }

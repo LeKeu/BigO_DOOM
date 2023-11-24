@@ -31,26 +31,7 @@ public class Calcular : MonoBehaviour
         if (exprCLog.Contains("N*l")) 
         { if (exprSLog.Contains("N^")) { return 'o'; } else { return 'b'; } }
         return 'o';
-        /*
-        System.Data.DataTable table = new System.Data.DataTable();
-        
-        int parAberto = 1;
-        int parFechado = 0;
-        int index = exprCLog.IndexOf("g");
-        string log = "";
-        for (int i = index+2; i < exprCLog.Length; i++)
-        {
-            if (exprCLog[i] == '(' && i != index+2) { parAberto++; }
-            if (exprCLog[i] == ')') { parFechado++; }
-            if (parAberto == parFechado) { break; }
-            log += exprCLog[i];
-        }
 
-        Debug.Log("EXPR MAN " + exprCLog);
-        Debug.Log("LOG MAN "+log);
-        double d = (double)table.Compute(log, null);
-        Debug.Log("CARA "+d);
-        */
     }
 
 

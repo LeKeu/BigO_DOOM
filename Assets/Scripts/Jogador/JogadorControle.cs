@@ -23,7 +23,7 @@ public class JogadorControle : MonoBehaviour
     public bool respondeu = false;
 
     //Vida player
-    public int vidaAtual;
+    public int vidaAtual = 99;
     [SerializeField] public int vidaMax = 100;
     public GameObject telaMorte;
 
@@ -36,13 +36,13 @@ public class JogadorControle : MonoBehaviour
     private void Awake()
     {
         instancia = this;
+        vidaAtual = vidaMax;
     }
 
     void Start()
     {
         //qntdBalas = 0;
         rb = gameObject.GetComponent<Rigidbody2D>();
-        vidaAtual = vidaMax;
 
         textVida.text = vidaAtual.ToString() + "%";
         textBalas.text = qntdBalas.ToString();
