@@ -86,22 +86,26 @@ public class JogadorControle : MonoBehaviour
                         }
                         if (hit.transform.tag == "Omega")
                         {
+                            AcabarJogo.perguntasResp++;
                             if(hit.transform.parent.GetComponent<ButCertoResp>().resp == 'o') 
                             {
                                 respondeu = true;
                                 buffDebuff.Buff();
                                 hit.transform.GetChild(0).GetChild(0).GetComponent<Image>().color = Color.green;
+                                AcabarJogo.qntdCertas++;
                             }
                             else { respondeu = true; hit.transform.GetChild(0).GetChild(0).GetComponent<Image>().color = Color.red; buffDebuff.Debuff(); }
                         }
                         if (hit.transform.tag == "BigO")
                         {
+                            AcabarJogo.perguntasResp++;
                             Debug.Log(hit.transform.name);
                             if (hit.transform.parent.GetComponent<ButCertoResp>().resp == 'b') 
                             {
                                 respondeu = true;
                                 buffDebuff.Buff();
                                 hit.transform.GetChild(0).GetChild(0).GetComponent<Image>().color = Color.green;
+                                AcabarJogo.qntdCertas++;
                             }
                             else { respondeu = true; hit.transform.GetChild(0).GetChild(0).GetComponent<Image>().color = Color.red; buffDebuff.Debuff(); }
                         }
