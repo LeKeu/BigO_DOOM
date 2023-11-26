@@ -48,8 +48,6 @@ public class OndaInimigo : MonoBehaviour
 
     IEnumerator IEGerarInimigo()
     {
-        Debug.Log("entrei");
-        Debug.Log("Nome onda: " + transform.parent.name);
         for (int i = 0; i < qntd_inimigo; i++)
         {
             Instantiate(inimigo, lugarSpawn[Random.Range(0, lugarSpawn.Count)].transform);
