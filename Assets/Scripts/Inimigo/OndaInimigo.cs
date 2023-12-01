@@ -21,6 +21,7 @@ public class OndaInimigo : MonoBehaviour
 
     private void Start()
     {
+        qntdInmVivo = qntd_inimigo;
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<JogadorControle>();
     }
 
@@ -51,7 +52,7 @@ public class OndaInimigo : MonoBehaviour
         for (int i = 0; i < qntd_inimigo; i++)
         {
             Instantiate(inimigo, lugarSpawn[Random.Range(0, lugarSpawn.Count)].transform);
-            qntdInmVivo++;
+            //qntdInmVivo++;
             ondaStart = true;
             yield return new WaitForSeconds(2f);
         }

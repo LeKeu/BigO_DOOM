@@ -44,7 +44,7 @@ public class JogadorControle : MonoBehaviour
         //qntdBalas = 0;
         rb = gameObject.GetComponent<Rigidbody2D>();
 
-        textVida.text = vidaAtual.ToString() + "%";
+        textVida.text = vidaAtual.ToString();
         textBalas.text = qntdBalas.ToString();
 
         animator = GetComponent<Animator>();
@@ -81,7 +81,6 @@ public class JogadorControle : MonoBehaviour
                         Instantiate(balaImpacto, hit.point, transform.rotation);
                         if (hit.transform.tag == "Inimigo")
                         {
-                            //Debug.Log("atingi " + hit.transform.name);
                             hit.transform.parent.GetComponent<InimigoController>().TirarVida();
                         }
                         if (hit.transform.tag == "Omega")
@@ -92,6 +91,8 @@ public class JogadorControle : MonoBehaviour
                                 respondeu = true;
                                 buffDebuff.Buff();
                                 hit.transform.GetChild(0).GetChild(0).GetComponent<Image>().color = Color.green;
+                                hit.transform.GetComponent<BoxCollider>().enabled = false;
+                                GameObject.FindGameObjectWithTag("BigO").transform.GetComponent<BoxCollider>().enabled = false;
                                 AcabarJogo.qntdCertas++;
                             }
                             else { respondeu = true; hit.transform.GetChild(0).GetChild(0).GetComponent<Image>().color = Color.red; buffDebuff.Debuff(); }
@@ -99,20 +100,17 @@ public class JogadorControle : MonoBehaviour
                         if (hit.transform.tag == "BigO")
                         {
                             AcabarJogo.perguntasResp++;
-                            Debug.Log(hit.transform.name);
                             if (hit.transform.parent.GetComponent<ButCertoResp>().resp == 'b') 
                             {
                                 respondeu = true;
                                 buffDebuff.Buff();
                                 hit.transform.GetChild(0).GetChild(0).GetComponent<Image>().color = Color.green;
+                                hit.transform.GetComponent<BoxCollider>().enabled = false;   
+                                GameObject.FindGameObjectWithTag("Omega").transform.GetComponent<BoxCollider>().enabled = false;
                                 AcabarJogo.qntdCertas++;
                             }
                             else { respondeu = true; hit.transform.GetChild(0).GetChild(0).GetComponent<Image>().color = Color.red; buffDebuff.Debuff(); }
                         }
-                    }
-                    else
-                    {
-                        Debug.Log("nao vi");
                     }
                     qntdBalas--;
                     armaAnim.SetTrigger("atirar");
