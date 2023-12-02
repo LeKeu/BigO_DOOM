@@ -19,13 +19,13 @@ public class BuffDebuff : MonoBehaviour
 
     public void Buff()
     {
-        jogadorControle.vidaAtual += jogadorControle.vidaAtual/2;
+        //jogadorControle.vidaAtual += jogadorControle.vidaAtual/2;
         jogadorControle.vel = velAcertou;
     }
 
     public void Debuff()
     {
-        jogadorControle.vidaAtual /= 2;
+        //jogadorControle.vidaAtual /= 2;
         jogadorControle.vel = velErrou;
     }
 

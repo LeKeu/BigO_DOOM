@@ -44,12 +44,13 @@ public class InimigoController : MonoBehaviour
     public void TirarVida()
     {
         vida--;
-        Debug.Log("vidasss" + vida);
         if(vida <= 0) 
         { 
-            Destroy(gameObject); 
+            Destroy(gameObject);
+            OndaInimigo.qntdInmVivo--;
+            /*
             if (transform.tag == "Inimigo")
-                OndaInimigo.qntdInmVivo--;
+                OndaInimigo.qntdInmVivo--;*/
         }
     }
 }

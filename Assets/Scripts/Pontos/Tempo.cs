@@ -5,12 +5,16 @@ using UnityEngine;
 
 public class Tempo : MonoBehaviour
 {
-    public float tempoAtual = 0;
+    public static float tempoAtual = 0;
     public bool timerIsRunning = false;
     [SerializeField] TextMeshProUGUI timeText;
+    [SerializeField] CloudSave cloudSave;
+
+    bool auxSalvar;
     private void Start()
     {
-        timerIsRunning = true;
+        tempoAtual = 0;
+        timerIsRunning = true; auxSalvar = false;
     }
     void Update()
     {
@@ -19,9 +23,10 @@ public class Tempo : MonoBehaviour
             tempoAtual += Time.deltaTime;
             DisplayTime(tempoAtual);
         }
-        else
+        if(AcabarJogo.chegouNoFim && !auxSalvar)
         {
-            Debug.Log(tempoAtual);
+            auxSalvar = true;
+            cloudSave.SaveHighScore(tempoAtual);
         }
     }
     void DisplayTime(float timeToDisplay)

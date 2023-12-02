@@ -11,7 +11,28 @@ public class IA_DAC : MonoBehaviour
     [SerializeField] int checarQntdBalas = 15;
     [SerializeField] int checarQntdVida = 30;
 
+    [Header("Paineis")]
+    [SerializeField] TextMeshProUGUI textoE;
+    [SerializeField] GameObject PanelE;
+    public static bool ativoE;
+    [SerializeField] GameObject AperteE;
+    [SerializeField] TextMeshProUGUI textoIA;
+    [SerializeField] GameObject Panel;
+
+    [SerializeField] static float tempoTotal = 20f;
+    public static float tempo = 0f;
+
+    public static int strike = 0;
+    public static bool strikeAux;
+
+    [SerializeField] List<string> opcComOnda = new List<string>() { "Cuidado! Onda de inimigo se aproximando!", "Mano, ta vindo uns inimigos ae!", "Tédoidé, tem uns cara vindo!", "Migo pega o beco!" };
+    [SerializeField] List<string> opcqntdBala = new List<string>() { "Cuidado! Está ficando com poucas balas!", "Ta acabando os pipocos ein!" ,"Vamo recarregar a arma, migo??", "Pelo amor de Deus pega a caixa de balas!" };
+    [SerializeField] List<string> opcqntdVida = new List<string>() { "Cuidado! Sua vida está acabando!", "Miga vamo morrer! Cura CURA!", "Ta na hora de pegar uma vidinha...", "Ó... tá mei lascadein..." };
+    [SerializeField] List<string> opcDicas = new List<string>() { "Migo, bora responder a pergunta, não?", "Já respondeste a pergunta?", "Você tem que reponder a pergunta.", "Você deve responder a pergunta.", "Lembre-se, BigO é 'maior que'...", "Exemplo: f(N) é Omega de g(logN)" };
+    [SerializeField] List<string> opcQuestoesCertasStrike = new List<string> { "Uma máquina! Você está com X perguntas certas direto!", "X Certas direto!!!" };
+
     public static bool comecouOnda;
+    public static bool duranteOnda;
     public static int qntdInimigos;
 
     public static int qntdBalas;
@@ -25,29 +46,12 @@ public class IA_DAC : MonoBehaviour
 
     public static bool acertou;
 
-    [Header("Paineis")]
-    [SerializeField] TextMeshProUGUI textoE;
-    [SerializeField] GameObject PanelE;
-    public static bool ativoE;
-    [SerializeField] GameObject AperteE;
-    [SerializeField] TextMeshProUGUI textoIA;
-    [SerializeField] GameObject Panel;
-
-    [SerializeField] static float tempoTotal = 10f;
-    public static float tempo = 0f;
-
-    List<string> opcComOnda = new List<string>() { "Cuidado! Onda de inimigo se aproximando!", "Mano, ta vindo uns inimigos ae!", "Tédoidé, tem uns cara vindo!", "Migo pega o beco!" };
-    List<string> opcqntdBala = new List<string>() { "Cuidado! Está ficando com poucas balas!", "Ta acabando os pipocos ein!" ,"Vamo recarregar a arma, migo??", "Pelo amor de Deus pega a caixa de balas!" };
-    List<string> opcqntdVida = new List<string>() { "Cuidado! Sua vida está acabando!", "Miga vamo morrer! Cura CURA!", "Ta na hora de pegar uma vidinha...", "Ó... tá mei lascadein..." };
-    List<string> opcDicas = new List<string>() { "Migo, bora responder a pergunta, não?", "Já respondeste a pergunta?", "Você tem que reponder a pergunta.", "Você deve responder a pergunta.", "Lembre-se, BigO é 'maior que'...", "Exemplo: f(N) é Omega de g(logN)" };
-    List<string> opcQuestoesCertasStrike = new List<string> { "Uma máquina! Você está com X perguntas certas direto!", "X Certas direto!!!" };
-
     public static string Dica;
 
     void Start()
     {
         Panel.SetActive(false); PanelE.SetActive(false);
-        qntdBalasAUX = true; qntdVidaAUX = true; jaRespondeuAUX = true;
+        qntdBalasAUX = true; qntdVidaAUX = true; jaRespondeuAUX = true; strikeAux = true; duranteOnda = false;
         Dica = opcDicas[Random.Range(0, opcDicas.Count)];
     }
 
@@ -55,10 +59,10 @@ public class IA_DAC : MonoBehaviour
     {
         tempo += Time.deltaTime;
 
-        if(tempo >= tempoTotal)
+        if(tempo >= tempoTotal && !duranteOnda)
         {
             StartCoroutine("EscreverDicaE"); 
-            tempo = 0;
+            tempo = 0; strikeAux = true;
         }
 
         qntdBalas = JogadorControle.instancia.qntdBalas;
@@ -76,6 +80,9 @@ public class IA_DAC : MonoBehaviour
 
         if ((qntdBalas >= checarQntdBalas) && (qntdVida >= checarQntdVida)) 
         { Dica = opcDicas[Random.Range(0, opcDicas.Count)]; } // aqui entra na vida mesmo com bala abaixo sla
+
+        if (strike == 2 && strikeAux)
+            EscreverMensagem(3);
     }
     IEnumerator EscreverDicaE()
     {
@@ -91,7 +98,6 @@ public class IA_DAC : MonoBehaviour
     { StartCoroutine("IEEscreverMensagem", idT); }
     IEnumerator IEEscreverMensagem(int idT)
     {
-        Debug.Log("IA " + idT);
         Panel.SetActive(true);
         switch (idT)
         {
@@ -110,7 +116,9 @@ public class IA_DAC : MonoBehaviour
                 textoIA.text = opcqntdVida[Random.Range(0, opcqntdVida.Count)];
                 Dica = opcqntdVida[Random.Range(0, opcqntdVida.Count)];
                 break;
-            case 3:
+            case 3: // strikes questões certas
+                strikeAux = false;
+                textoIA.text = opcQuestoesCertasStrike[Random.Range(0, opcQuestoesCertasStrike.Count)].Replace("X", strike.ToString());
                 break;
             case 4:
                 break;

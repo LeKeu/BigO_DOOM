@@ -11,9 +11,14 @@ public class porta : MonoBehaviour
 
     bool podeAbrir;
 
-    public static bool abrirPorraPorta = false;
+    public static bool abrirPorraPorta;
 
     [SerializeField] bool portaNormal;
+
+    private void Start()
+    {
+        abrirPorraPorta = false;
+    }
 
     // Update is called once per frame
     void Update()

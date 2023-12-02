@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class OndaInimigo : MonoBehaviour
 {
+    [SerializeField] float segundos = 1f;
     [SerializeField] GameObject inimigo;
     [SerializeField] List<Transform> lugarSpawn;
 
@@ -27,7 +28,8 @@ public class OndaInimigo : MonoBehaviour
 
     void Update()
     {
-        if(!gerou && player.respondeu) 
+        //qntdInmVivo = qntd_inimigo;
+        if (!gerou && player.respondeu) 
         {
             gerou = true;
             player.respondeu = false;
@@ -36,25 +38,30 @@ public class OndaInimigo : MonoBehaviour
 
         if(qntdInmVivo == 0 && ondaStart)
         {
+            Debug.Log("abrir porta, inimigosVivos = "+qntdInmVivo);
             porta.abrirPorraPorta = true;
+            IA_DAC.duranteOnda = false;
             ondaStart = false;
         }
     }
 
     public void GerarInimigo()
     {
+        qntdInmVivo = qntd_inimigo;
         IA_DAC.comecouOnda = true;
         StartCoroutine("IEGerarInimigo");
     }
 
     IEnumerator IEGerarInimigo()
     {
+        IA_DAC.duranteOnda = true;
         for (int i = 0; i < qntd_inimigo; i++)
         {
+            porta.abrirPorraPorta = false;
             Instantiate(inimigo, lugarSpawn[Random.Range(0, lugarSpawn.Count)].transform);
             //qntdInmVivo++;
             ondaStart = true;
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(segundos);
         }
     }
 }

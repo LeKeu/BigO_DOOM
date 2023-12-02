@@ -21,4 +21,9 @@ public class Butoes : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
+    public void Jogar()
+    {
+        SceneManager.LoadScene("StartUp");
+    }
 }
