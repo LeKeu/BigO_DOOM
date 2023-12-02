@@ -77,7 +77,6 @@ public class JogadorControle : MonoBehaviour
                     RaycastHit hit;
                     if (Physics.Raycast(ray, out hit))
                     {
-                        Debug.Log("atingi " + hit.transform.name);
                         Instantiate(balaImpacto, hit.point, transform.rotation);
                         if (hit.transform.tag == "Inimigo")
                         {
@@ -85,31 +84,35 @@ public class JogadorControle : MonoBehaviour
                         }
                         if (hit.transform.tag == "Omega")
                         {
+                            porta.abrirPorraPorta = false;
                             AcabarJogo.perguntasResp++;
                             if(hit.transform.parent.GetComponent<ButCertoResp>().resp == 'o') 
                             {
                                 respondeu = true;
                                 buffDebuff.Buff();
                                 hit.transform.GetChild(0).GetChild(0).GetComponent<Image>().color = Color.green;
+                                IA_DAC.strike++;
                                 hit.transform.GetComponent<BoxCollider>().enabled = false;
                                 GameObject.FindGameObjectWithTag("BigO").transform.GetComponent<BoxCollider>().enabled = false;
                                 AcabarJogo.qntdCertas++;
                             }
-                            else { respondeu = true; hit.transform.GetChild(0).GetChild(0).GetComponent<Image>().color = Color.red; buffDebuff.Debuff(); }
+                            else { respondeu = true; hit.transform.GetChild(0).GetChild(0).GetComponent<Image>().color = Color.red; buffDebuff.Debuff(); IA_DAC.strike = 0; }
                         }
                         if (hit.transform.tag == "BigO")
                         {
+                            porta.abrirPorraPorta = false;
                             AcabarJogo.perguntasResp++;
                             if (hit.transform.parent.GetComponent<ButCertoResp>().resp == 'b') 
                             {
                                 respondeu = true;
                                 buffDebuff.Buff();
                                 hit.transform.GetChild(0).GetChild(0).GetComponent<Image>().color = Color.green;
+                                IA_DAC.strike++;
                                 hit.transform.GetComponent<BoxCollider>().enabled = false;   
                                 GameObject.FindGameObjectWithTag("Omega").transform.GetComponent<BoxCollider>().enabled = false;
                                 AcabarJogo.qntdCertas++;
                             }
-                            else { respondeu = true; hit.transform.GetChild(0).GetChild(0).GetComponent<Image>().color = Color.red; buffDebuff.Debuff(); }
+                            else { respondeu = true; hit.transform.GetChild(0).GetChild(0).GetComponent<Image>().color = Color.red; buffDebuff.Debuff(); IA_DAC.strike = 0; }
                         }
                     }
                     qntdBalas--;
