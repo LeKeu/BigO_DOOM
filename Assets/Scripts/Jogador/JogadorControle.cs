@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using Unity.Burst.CompilerServices;
 
 public class JogadorControle : MonoBehaviour
 {
@@ -32,6 +33,8 @@ public class JogadorControle : MonoBehaviour
     Animator animator;
 
     [SerializeField] BuffDebuff buffDebuff;
+
+    List<string> OpcsAssint = new List<string>() { "1", "log", "N", "N*log", "N^", "^N" };
     // Start is called before the first frame update
     private void Awake()
     {
@@ -82,6 +85,8 @@ public class JogadorControle : MonoBehaviour
                         {
                             hit.transform.parent.GetComponent<InimigoController>().TirarVida();
                         }
+                        ChecarAssint(hit);
+                        /*
                         if (hit.transform.tag == "Omega")
                         {
                             porta.abrirPorraPorta = false;
@@ -113,7 +118,7 @@ public class JogadorControle : MonoBehaviour
                                 AcabarJogo.qntdCertas++;
                             }
                             else { respondeu = true; hit.transform.GetChild(0).GetChild(0).GetComponent<Image>().color = Color.red; buffDebuff.Debuff(); IA_DAC.strike = 0; }
-                        }
+                        }*/
                     }
                     qntdBalas--;
                     armaAnim.SetTrigger("atirar");
@@ -130,6 +135,36 @@ public class JogadorControle : MonoBehaviour
             }
         }
         
+    }
+
+    public void ChecarAssint(RaycastHit hit)
+    {
+        Debug.Log("tag - "+hit.transform.tag);
+
+        foreach(string a in OpcsAssint)
+        {
+            if (hit.transform.tag == a)
+            {
+                Debug.Log(hit.transform.tag + " atingido e a = "+ a);
+                porta.abrirPorraPorta = false;
+                AcabarJogo.perguntasResp++;
+
+                Debug.Log("resposta - "+hit.transform.parent.GetComponent<ButCertoResp>().respAssint);
+                if (hit.transform.parent.GetComponent<ButCertoResp>().respAssint == a)
+                {
+                    respondeu = true;
+                    buffDebuff.Buff();
+                    hit.transform.GetChild(0).GetChild(0).GetComponent<Image>().color = Color.green;
+                    IA_DAC.strike++;
+                    hit.transform.GetComponent<BoxCollider>().enabled = false;
+                    GameObject.FindGameObjectWithTag(hit.transform.parent.GetComponent<ButCertoResp>().erradaAssint).transform.GetComponent<BoxCollider>().enabled = false;
+                    AcabarJogo.qntdCertas++;
+                }
+                else { respondeu = true; hit.transform.GetChild(0).GetChild(0).GetComponent<Image>().color = Color.red; buffDebuff.Debuff(); IA_DAC.strike = 0; }
+                break;
+            }
+            
+        }
     }
 
     public void ReceberDano(int dano)

@@ -8,6 +8,7 @@ public class ButCertoResp : MonoBehaviour
 {
     [SerializeField] List<GameObject> butOpcs = new List<GameObject>();
     List<string> OpcsTxt = new List<string>() { "BigO", "Omega" };
+    List<string> OpcsAssint = new List<string>() { "1", "log", "N", "N*log", "N^", "^N" };
     [SerializeField] GameObject exprTxt;
 
     TESTE Expr;
@@ -22,6 +23,8 @@ public class ButCertoResp : MonoBehaviour
     bool b = false;
     bool o = false;
     public char resp;
+    public string respAssint;
+    public string erradaAssint;
 
     private void Awake()
     {
@@ -40,8 +43,9 @@ public class ButCertoResp : MonoBehaviour
         var exprs = Gerar();
         string f = exprs[0].ToString();
         string g = exprs[1].ToString();
-
-        LugarAleResp(f, g, resp);
+        respAssint = Assintotica.checarAssintotica(f);
+        LugarAleRespAssint(f, respAssint);
+        //LugarAleResp(f, g, resp);
     }
 
     public List<string> Gerar()
@@ -58,6 +62,7 @@ public class ButCertoResp : MonoBehaviour
         b = bigO.checarBigO(f, g);
         o = omega.checarOmega(f, g);
 
+        /*
         if((!b && o!) || (f.Contains("log") && g.Contains("log"))) { Gerar(); }
         if (f.Contains("log") && !g.Contains("log")) { Debug.Log("f(" + f + ") é BigO de g(" + g + ")."); resp = 'b'; } 
         else if (!f.Contains("log") && g.Contains("log")) { Debug.Log("f(" + f + ") é Omega de g(" + g + ")."); resp = 'o'; }
@@ -69,7 +74,7 @@ public class ButCertoResp : MonoBehaviour
 
         Debug.Log(f + " <--> " + g);
         Debug.Log("===========================");
-        
+        */
         return new List<string> { f, g };
     }
 
@@ -88,6 +93,33 @@ public class ButCertoResp : MonoBehaviour
 
         this.butOpcs[indexOpc].GetComponentInChildren<Canvas>().GetComponentInChildren<TextMeshProUGUI>().text = this.OpcsTxt[indexTxt];
         this.butOpcs[indexOpc].transform.tag = this.OpcsTxt[indexTxt];
+    }
+
+    public void LugarAleRespAssint(string f, string resp)
+    {
+        int posAux = 0;
+        for(int i = 0; i < OpcsAssint.Count; i++)
+        {
+            if (OpcsAssint[i] == resp)
+            {
+                posAux = i; erradaAssint = OpcsAssint[i]; break;
+            }
+        }
+
+        int indexOpc = Random.Range(0, 2);
+        this.exprTxt.GetComponentInChildren<Canvas>().GetComponentInChildren<TextMeshProUGUI>().text = "Assintótica de: f(" + f + ")";
+
+        this.butOpcs[indexOpc].GetComponentInChildren<Canvas>().GetComponentInChildren<TextMeshProUGUI>().text = this.OpcsAssint[posAux];
+        this.butOpcs[indexOpc].transform.tag = this.OpcsAssint[posAux];
+
+        if (indexOpc == 1) { indexOpc = 0; } else { indexOpc = 1; }
+
+        List<int> listOpcErrada = new List<int>() { 0, 1, 2, 3, 4, 5 };
+        listOpcErrada.RemoveAt(posAux);
+        int indexOpcErrada = Random.Range(0, 5);
+
+        this.butOpcs[indexOpc].GetComponentInChildren<Canvas>().GetComponentInChildren<TextMeshProUGUI>().text = this.OpcsAssint[indexOpcErrada];
+        this.butOpcs[indexOpc].transform.tag = this.OpcsAssint[indexOpcErrada];
     }
 
 

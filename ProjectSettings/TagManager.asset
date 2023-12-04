@@ -18,6 +18,13 @@ TagManager:
   - b7
   - b8
   - b9
+  - Porta
+  - N
+  - 1
+  - ^N
+  - N^
+  - N*log
+  - log
   layers:
   - Default
   - TransparentFX
