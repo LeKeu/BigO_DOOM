@@ -44,12 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdbafc8c40d70f04785ae13c8fbd93c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  segundos: 1
   inimigo: {fileID: 5528088074890105376, guid: 26f1220c30fa1ff4cbd5fc2b0a886f1f, type: 3}
   lugarSpawn:
   - {fileID: 859904599}
   - {fileID: 499919718}
   - {fileID: 1649994893}
-  qntd_inimigo: 10
+  qntd_inimigo: 5
   acertou: 0
   porta: {fileID: 5542362331058910531, guid: 07780f7baf31c6d4996fec4bebc0fea1, type: 3}
 --- !u!1 &499919717
@@ -1173,6 +1174,8 @@ MonoBehaviour:
   - {fileID: 6712188054550894311}
   exprTxt: {fileID: 6712188054814694563}
   resp: 0
+  respAssint: 
+  erradaAssint: 
 --- !u!114 &6712188056274905354
 MonoBehaviour:
   m_ObjectHideFlags: 0

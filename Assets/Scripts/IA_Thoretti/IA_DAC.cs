@@ -44,12 +44,13 @@ public class IA_DAC : MonoBehaviour
     public static bool jaRespondeu;
     public static bool jaRespondeuAUX;
 
-    public static bool acertou;
-
     public static string Dica;
 
     void Start()
     {
+        tempoTotal = 20f; tempo = 0f;
+        comecouOnda = false; 
+
         Panel.SetActive(false); PanelE.SetActive(false);
         qntdBalasAUX = true; qntdVidaAUX = true; jaRespondeuAUX = true; strikeAux = true; duranteOnda = false;
         Dica = opcDicas[Random.Range(0, opcDicas.Count)];

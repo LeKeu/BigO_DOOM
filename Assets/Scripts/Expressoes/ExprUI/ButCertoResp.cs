@@ -8,7 +8,7 @@ public class ButCertoResp : MonoBehaviour
 {
     [SerializeField] List<GameObject> butOpcs = new List<GameObject>();
     List<string> OpcsTxt = new List<string>() { "BigO", "Omega" };
-    List<string> OpcsAssint = new List<string>() { "1", "log", "N", "N*log", "N^", "^N" };
+    List<string> OpcsAssint = new List<string>() { "^N", "N^", "N*log", "N", "log", "1" };
     [SerializeField] GameObject exprTxt;
 
     TESTE Expr;

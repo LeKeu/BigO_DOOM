@@ -16,6 +16,9 @@ public class AcabarJogo : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        perguntasResp = 0;
+        chegouNoFim = false;
+        qntdCertas = 0;
         QntdCertasText.text = $"{qntdCertas}/{qntdPergNecTotal}";
     }
 
@@ -27,6 +30,7 @@ public class AcabarJogo : MonoBehaviour
         {
             chegouNoFim = true;
             GanhouTela.SetActive(true);
+            Time.timeScale = 0;
         }
     }
 }

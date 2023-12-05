@@ -29,7 +29,7 @@ public class Tempo : MonoBehaviour
             cloudSave.SaveHighScore(tempoAtual);
         }
     }
-    void DisplayTime(float timeToDisplay)
+    public void DisplayTime(float timeToDisplay)
     {
         timeToDisplay += 1;
         float minutes = Mathf.FloorToInt(timeToDisplay / 60);
