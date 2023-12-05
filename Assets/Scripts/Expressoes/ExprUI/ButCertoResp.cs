@@ -97,6 +97,7 @@ public class ButCertoResp : MonoBehaviour
 
     public void LugarAleRespAssint(string f, string resp)
     {
+        string aux1, aux2;
         int posAux = 0;
         for(int i = 0; i < OpcsAssint.Count; i++)
         {
@@ -109,14 +110,17 @@ public class ButCertoResp : MonoBehaviour
         int indexOpc = Random.Range(0, 2);
         this.exprTxt.GetComponentInChildren<Canvas>().GetComponentInChildren<TextMeshProUGUI>().text = "Assintótica de: f(" + f + ")";
 
+        aux1 = OpcsAssint[posAux];
         this.butOpcs[indexOpc].GetComponentInChildren<Canvas>().GetComponentInChildren<TextMeshProUGUI>().text = this.OpcsAssint[posAux];
         this.butOpcs[indexOpc].transform.tag = this.OpcsAssint[posAux];
 
         if (indexOpc == 1) { indexOpc = 0; } else { indexOpc = 1; }
 
         List<int> listOpcErrada = new List<int>() { 0, 1, 2, 3, 4, 5 };
-        listOpcErrada.RemoveAt(posAux);
+        //listOpcErrada.RemoveAt(posAux);
         int indexOpcErrada = Random.Range(0, 5);
+
+        indexOpcErrada += OpcsAssint[indexOpcErrada] == OpcsAssint[posAux] ? (indexOpcErrada < 4? 2 : 1) : 0;
 
         this.butOpcs[indexOpc].GetComponentInChildren<Canvas>().GetComponentInChildren<TextMeshProUGUI>().text = this.OpcsAssint[indexOpcErrada];
         this.butOpcs[indexOpc].transform.tag = this.OpcsAssint[indexOpcErrada];

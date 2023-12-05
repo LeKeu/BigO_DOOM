@@ -28,7 +28,7 @@ public class IA_DAC : MonoBehaviour
     [SerializeField] List<string> opcComOnda = new List<string>() { "Cuidado! Onda de inimigo se aproximando!", "Mano, ta vindo uns inimigos ae!", "Tédoidé, tem uns cara vindo!", "Migo pega o beco!" };
     [SerializeField] List<string> opcqntdBala = new List<string>() { "Cuidado! Está ficando com poucas balas!", "Ta acabando os pipocos ein!" ,"Vamo recarregar a arma, migo??", "Pelo amor de Deus pega a caixa de balas!" };
     [SerializeField] List<string> opcqntdVida = new List<string>() { "Cuidado! Sua vida está acabando!", "Miga vamo morrer! Cura CURA!", "Ta na hora de pegar uma vidinha...", "Ó... tá mei lascadein..." };
-    [SerializeField] List<string> opcDicas = new List<string>() { "Migo, bora responder a pergunta, não?", "Já respondeste a pergunta?", "Você tem que reponder a pergunta.", "Você deve responder a pergunta.", "Lembre-se, BigO é 'maior que'...", "Exemplo: f(N) é Omega de g(logN)" };
+    [SerializeField] List<string> opcDicas = new List<string>() { "Migo, bora responder a pergunta, não?", "Já respondeste a pergunta?", "Você tem que reponder a pergunta.", "Assintótica de N+14000 é N", "\"^N\" > \"N^\" > \"N*log\" > \"N\" > \"log\" > \"1\"", "Assintótica de 45^2 é 1." };
     [SerializeField] List<string> opcQuestoesCertasStrike = new List<string> { "Uma máquina! Você está com X perguntas certas direto!", "X Certas direto!!!" };
 
     public static bool comecouOnda;

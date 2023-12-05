@@ -8,11 +8,31 @@ using UnityEngine;
 public class HighScore : MonoBehaviour
 {
     [SerializeField] GameObject scoreText;
+    [SerializeField] GameObject nameText;
     [SerializeField] Tempo timer;
     public static string scoreH;
+    public static string nomeH;
+
+    bool auxBool;
+
+    private void Start()
+    {
+        auxBool = false;
+    }
+
     private void Update()
     {
-        scoreText.GetComponent<TextMeshProUGUI>().text = "HighScore: "+ DisplayTime(float.Parse(scoreH));
+        string aux = "";
+        if (!auxBool)
+        {
+            for (int i = 0; i < scoreH.Length; i++)
+            {
+                if (scoreH[i] == '.') { auxBool = true; break; }
+                aux += scoreH[i];
+            }
+        }
+        
+        scoreText.GetComponent<TextMeshProUGUI>().text = $"{nomeH}\nHighScore: {DisplayTime(float.Parse(aux))}";
     }
     public string DisplayTime(float timeToDisplay)
     {
