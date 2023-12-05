@@ -161,6 +161,7 @@ public class JogadorControle : MonoBehaviour
                     AcabarJogo.qntdCertas++;
                 }
                 else { respondeu = true; hit.transform.GetChild(0).GetChild(0).GetComponent<Image>().color = Color.red; buffDebuff.Debuff(); IA_DAC.strike = 0; }
+                AcabarJogo.qntdTotal++;
                 break;
             }
             

@@ -47,7 +47,7 @@ public class AuthManager : MonoBehaviour
         {
             await AuthenticationService.Instance.SignInAnonymouslyAsync();
             Debug.Log("sucesso " + AuthenticationService.Instance.PlayerId);
-            SceneManager.LoadScene("StartUp");
+            //SceneManager.LoadScene("Ensinando");
         }
         catch (AuthenticationException ex)
         {
