@@ -18,6 +18,8 @@ public class CloudSave : MonoBehaviour
     {
         temNovoScore = false;
         await UnityServices.InitializeAsync();
+        Dictionary<string, string> savedScore = await CloudSaveService.Instance.Data.LoadAsync(new HashSet<string> { "Score" });
+        HighScore.scoreH = savedScore["Score"];
     }
 
     public async void SaveData()

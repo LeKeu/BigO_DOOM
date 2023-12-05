@@ -12,7 +12,6 @@ public class OndaInimigo : MonoBehaviour
     bool ondaStart = false;
     public bool acertou = false;
 
-    public static string area;
     bool gerou = false;
 
     JogadorControle player;

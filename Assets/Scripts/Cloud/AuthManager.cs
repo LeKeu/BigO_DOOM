@@ -12,8 +12,10 @@ public class AuthManager : MonoBehaviour
     [SerializeField] GameObject PainelLogIn;
     async void Start()
     {
+        //AuthenticationService.Instance.ClearSessionToken();
         await UnityServices.InitializeAsync();
     }
+
 
     public async void SignIn()
     {

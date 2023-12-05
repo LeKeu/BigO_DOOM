@@ -47,10 +47,9 @@ public class InimigoController : MonoBehaviour
         if(vida <= 0) 
         { 
             Destroy(gameObject);
-            OndaInimigo.qntdInmVivo--;
-            /*
+            
             if (transform.tag == "Inimigo")
-                OndaInimigo.qntdInmVivo--;*/
+                OndaInimigo.qntdInmVivo--;
         }
     }
 }
