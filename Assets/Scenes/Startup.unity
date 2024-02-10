@@ -9347,7 +9347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ed87629988a0c94284679d4690a373a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  qntdPergNecTotal: 5
+  qntdPergNecTotal: 3
   qntdPerguntas: {fileID: 702132920}
   GanhouTela: {fileID: 599233994}
   PerdeuTela: {fileID: 1944044859}

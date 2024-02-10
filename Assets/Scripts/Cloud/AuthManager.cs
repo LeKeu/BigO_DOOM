@@ -12,7 +12,6 @@ public class AuthManager : MonoBehaviour
     [SerializeField] GameObject PainelLogIn;
     async void Start()
     {
-        //AuthenticationService.Instance.ClearSessionToken();
         await UnityServices.InitializeAsync();
     }
 
@@ -32,7 +31,6 @@ public class AuthManager : MonoBehaviour
         try
         {
             await AuthenticationService.Instance.SignInAnonymouslyAsync();
-            Debug.Log("sucesso " + AuthenticationService.Instance.PlayerId);
             PainelEntrar.SetActive(false);
             PainelLogIn.SetActive(true);
         }catch (AuthenticationException ex)
