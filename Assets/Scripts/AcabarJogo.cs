@@ -34,10 +34,11 @@ public class AcabarJogo : MonoBehaviour
             GanhouTela.SetActive(true);
             Time.timeScale = 0;
         }
+        /*
         if(qntdTotal == qntdPergNecTotal)
         {
             PerdeuTela.SetActive(true);
             Time.timeScale = 0;
-        }
+        }*/
     }
 }
